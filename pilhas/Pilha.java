@@ -1,44 +1,51 @@
 // uma pilha é uma forma de organizar elementos em um determinada ordem - estrutura linear
 // as inserções e remoções em pilhas são feitas no topo da pilha - esquema LIFO (last in, first out)
 
+// Pilha com array
 public class Pilha {
     private int topo; // ponteiro
-    private int[] itens;
+    private Object[] itens;
+    private int capacidade;
+    private int fatorCrescimento;
 
-    Pilha (int tamanho) {
-        topo = -1; // inicia pilha vazia
-        itens = new int[tamanho];
+    public Pilha (int capacidade, int crescimento) {
+        this.capacidade = capacidade;
+        topo = -1;
+        fatorCrescimento = crescimento;
+        if (crescimento <= 0) {
+            fatorCrescimento = 0;
+        }
+        itens = new Object[capacidade];
     }
 
-    public int getTopo() {
-        return topo;
+    public void push(Object o) {
+        if (topo >= capacidade - 1) {
+            if (fatorCrescimento == 0) {
+                capacidade *= 2;
+            } else {
+                capacidade += fatorCrescimento;
+            }
+            Object b[] = new Object[capacidade];
+            for (int i = 0; i < itens.length; i++) {
+                b[i] = itens[i];
+            }
+            itens = b;
+        }
+        itens[++topo] = o;
     }
 
-    public void setTopo(int topo) {
-        this.topo = topo;
+    public Object pop() {
+        if (isEmpty()) {
+            throw new PilhaVaziaExcecao("A pilha está vazia!");
+        }
+        Object r = itens[topo--];
+        return r;
     }
 
-    public int[] getItens() {
-        return itens;
-    }
-
-    public void setItens(int[] itens) {
-        this.itens = itens;
-    }
-
-    public void empilhar(int valor) {
-        verificarPilhaCheia();
-        topo++;
-        itens[topo] = valor;
-    }
-
-    public void desimpilhar() {
-        verificarPilhaVazia();
-        topo--;
-    }
-
-    public int retornarTopo() {
-        verificarPilhaVazia();
+    public Object top() {
+        if (isEmpty()) {
+            throw new PilhaVaziaExcecao("A pilha está vazia!");
+        }
         return itens[topo];
     }
 
@@ -48,15 +55,11 @@ public class Pilha {
         }
     }
 
-    public void verificarPilhaVazia() {
-        if (topo == -1) {
-            throw new PilhaVaziaExcecao("A pilha está vazia!");
-        }
+    public boolean isEmpty() {
+        return topo == -1;
     }
 
-    public void verificarPilhaCheia() {
-        if (topo == itens.length - 1) {
-            throw new PilhaCheiaExcecao("A pilha está cheia!");
-        }
+    public int size() {
+        return topo + 1;
     }
 }
