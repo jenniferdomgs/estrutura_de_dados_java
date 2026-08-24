@@ -1,4 +1,4 @@
-public class TestePRN {
+public class TestePilhaRN {
     public static void main(String[] args) {
         PilhaRN pilha = new PilhaRN(4);
 

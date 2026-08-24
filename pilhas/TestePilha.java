@@ -1,6 +1,6 @@
-// testes feitos com as pilhas (array elista ligada)
+// testes feitos com as pilhas (array e lista ligada)
 
-public class Main {
+public class TestePilha {
     public static void main(String[] args) {
         // capacidade inicial pequena (3) e crescimento fixo de 2 p/ forçar o redimensionamento
         Pilha p1 = new Pilha(3, 2);
