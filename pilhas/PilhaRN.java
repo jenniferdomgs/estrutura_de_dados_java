@@ -60,6 +60,20 @@ public class PilhaRN {
         return itemTopoP;
     }
 
+    public Object topVermelha() {
+        if (isEmptyVermelha()) {
+            throw new PilhaVaziaExcecao("A pilha vermelha vazia!");
+        }
+        return itens[topoVermelha];
+    }
+
+    public Object topPreta() {
+        if (isEmptyPreta()) {
+            throw new PilhaVaziaExcecao("A pilha preta está vazia!");
+        }
+        return itens[topoPreta];
+    }
+
     public void redimensionaTam(int novaCapaciade) {
         Object novaPilha[] = new Object[novaCapaciade];
 
