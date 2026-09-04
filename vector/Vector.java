@@ -1,3 +1,4 @@
+// Vector com array
 public class Vector {
     private Object[] itens;
     private int tamanho;
@@ -18,11 +19,20 @@ public class Vector {
 
     public Object insertAtRank(int rank, int item) {
         if (rank < 0 || rank > tamanho) {
+            throw new RankOutOfBoundsException("Rank fora dos limites!");
+        }
+        if (tamanho == capacidade) {
             capacidade *= 2;
+            Object b[] = new Object[capacidade];
+
+            for (int i = 0; i < tamanho; i++) {
+                b[i] = itens[i];
+            }
+
+            itens = b;
         }
 
-        Object b[] = new Object[capacidade];
-        for (int i = 0; i > rank; i--) {
+        for (int i = tamanho; i > rank; i--) {
             itens[i] = itens[i - 1];
         }
         itens[rank] = item;
@@ -30,16 +40,33 @@ public class Vector {
         return item;
     }
 
-//    public Object removeAtRank(int rank) {
-//        if (rank < 0 || rank >= tamanho) {
-//            throw new RankOutOfBoundsException("Rank fora dos limites!");
-//        }
-//
-//        int itemRemovido = itens[rank];
-//        for (int i = rank; i < tamanho - 1; i++) {
-//            itens[i] = itens[i + 1];
-//        }
-//        tamanho--;
-//        return itemRemovido;
-//    }
+    public Object removeAtRank(int rank) {
+        if (rank < 0 || rank >= tamanho) {
+            throw new RankOutOfBoundsException("Rank fora dos limites!");
+        }
+
+        Object itemRemovido = itens[rank];
+        for (int i = rank; i < tamanho - 1; i++) {
+            itens[i] = itens[i + 1];
+        }
+        tamanho--;
+        return itemRemovido;
+    }
+
+    public Object replaceAtRank(int rank, int item) {
+        if(rank < 0 || rank >= tamanho) {
+            throw new RankOutOfBoundsException("Rank fora dos limites!");
+        }
+
+        Object itemRemovido = itens[rank];
+        itens[rank] = item;
+        return itemRemovido;
+    }
+
+    public Object elemAtRank(int rank) {
+        if (rank < 0 || rank >= tamanho) {
+            throw new RankOutOfBoundsException("Rank fora dos limites!");
+        }
+        return itens[rank];
+    }
 }
