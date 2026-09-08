@@ -21,6 +21,10 @@ public class NodeLDL {
         this.proximo = proximo;
     }
 
+    public void setItem(Object item) {
+        this.item = item;
+    }
+
     public NodeLDL getAnterior() {
         return this.anterior;
     }
