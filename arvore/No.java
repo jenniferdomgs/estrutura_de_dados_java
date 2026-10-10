@@ -36,7 +36,7 @@ public class No {
         filhos.add(filho);
     }
 
-    public boolean removeFilho(No filho) {
+    public boolean removerFilho(No filho) {
         if (filhos.remove(filho)) {
             filho.pai = null;
             return true;
