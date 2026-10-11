@@ -39,7 +39,7 @@ public class TesteLista {
         System.out.println("Valor antigo retornado: " + antigo);
         System.out.println("Novo elemento na posição 1: " + numeros.after(0));
 
-        // remove
+        // remover
         Object removido = numeros.remove(0);
         System.out.println("Valor removido: " + removido);
         System.out.println("size depois de remover: " + numeros.size());
