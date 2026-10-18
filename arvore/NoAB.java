@@ -24,6 +24,10 @@ public class NoAB {
         return pai;
     }
 
+    public void setPai(NoAB pai) {
+        this.pai = pai;
+    }
+
     public NoAB getDireito() {
         return direito;
     }
@@ -59,4 +63,6 @@ public class NoAB {
 
         return cont;
     }
+
+
 }
